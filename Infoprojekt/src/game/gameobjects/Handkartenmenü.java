@@ -9,7 +9,7 @@ import org.newdawn.slick.SlickException;
 import game.life.Instanzen;
 import game.objects.Label;
 
-public class Handkartenmenü {
+public class HandkartenmenÃ¼ {
 	
 	int x;
 	int y;
@@ -23,7 +23,7 @@ public class Handkartenmenü {
 	int[] ypos = new int[10];
 	int[] r;
 
-	public Handkartenmenü(int spieler,GameContainer container) throws SlickException {
+	public HandkartenmenÃ¼(int spieler,GameContainer container) throws SlickException {
 		super();
 		this.spieler = spieler;
 		this.x = container.getWidth()/2-55/2-container.getWidth()/11*5/2;
@@ -56,7 +56,7 @@ public class Handkartenmenü {
 		}
 	}
 	
-	public int KarteAusgewählt(int mouseX, int mouseY){
+	public int KarteAusgewÃ¤hlt(int mouseX, int mouseY){
 		for (int i = 0; i < karten.length; i++) {
 			if(mouseX >= xpos[i] && mouseX <= xpos[i]+ container.getWidth()/11 && mouseY >= ypos[i] && mouseY <= ypos[i] + container.getWidth()/11*3/2){
 				return i;

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.GameContainer;
 
-import game.gameobjects.Tierpl‰ttchen;
+import game.gameobjects.Tierpl√§ttchen;
 
 public class Instanzen {
 
 	public static int s = 4;
 	public static int[] charakter = new int[6];
-	public static int[] pl‰ttchen‹brig = {30,30,30,30};
+	public static int[] pl√§ttchen√úbrig = {30,30,30,30};
 	public static int spielerAmZug = 1;
 	static int[][] skill = new int[6][6];
 	public static String[][] speicherString;
@@ -19,7 +19,7 @@ public class Instanzen {
 	public static int wertungen = 0;
 	public static Integer[] spielerpunkte;
 	public static boolean spielLaden = false;
-	private static ArrayList<Tierpl‰ttchen> tierpl‰ttchen = new ArrayList<Tierpl‰ttchen>();
+	private static ArrayList<Tierpl√§ttchen> tierpl√§ttchen = new ArrayList<Tierpl√§ttchen>();
 	static GameContainer container;
 	private static int spielID;
 	
@@ -41,16 +41,16 @@ public class Instanzen {
 		return charakter[i-1];
 	}
 
-	public static void setPl‰ttchenBenutzt(int spieler) {
-		pl‰ttchen‹brig[spieler-1] = pl‰ttchen‹brig[spieler-1] - 1;
+	public static void setPl√§ttchenBenutzt(int spieler) {
+		pl√§ttchen√úbrig[spieler-1] = pl√§ttchen√úbrig[spieler-1] - 1;
 	}
 	
-	public static void setPl‰ttchen‹brig(int pl‰ttchen, int i) {
-		pl‰ttchen‹brig[i] = pl‰ttchen;
+	public static void setPl√§ttchen√úbrig(int pl√§ttchen, int i) {
+		pl√§ttchen√úbrig[i] = pl√§ttchen;
 	}
 	
-	public static int getPl‰ttchen‹brig(int spieler) {
-		return pl‰ttchen‹brig[spieler-1];
+	public static int getPl√§ttchen√úbrig(int spieler) {
+		return pl√§ttchen√úbrig[spieler-1];
 	}
 
 	public static void setSpAZ(int spieler) {
@@ -133,26 +133,26 @@ public class Instanzen {
 		return spielID;
 	}
 	
-	public static void setTierpl‰ttchen(ArrayList<Tierpl‰ttchen> tierPl‰ttchen, GameContainer Container) {
-		tierpl‰ttchen = tierPl‰ttchen;
+	public static void setTierpl√§ttchen(ArrayList<Tierpl√§ttchen> tierPl√§ttchen, GameContainer Container) {
+		tierpl√§ttchen = tierPl√§ttchen;
 		container = Container;
 	}
 	
-	public static ArrayList<Tierpl‰ttchen> getTierpl‰ttchen() {
-		return tierpl‰ttchen;
+	public static ArrayList<Tierpl√§ttchen> getTierpl√§ttchen() {
+		return tierpl√§ttchen;
 	}
 
 	public static String[][] getSpeicherStringFelder() {
-		Feld = new String[tierpl‰ttchen.size()][s];
+		Feld = new String[tierpl√§ttchen.size()][s];
 		int i = 0;
-		for (Tierpl‰ttchen pl‰ttchen : tierpl‰ttchen) {
-			int x = pl‰ttchen.getX();
-			int y = pl‰ttchen.getY();
+		for (Tierpl√§ttchen pl√§ttchen : tierpl√§ttchen) {
+			int x = pl√§ttchen.getX();
+			int y = pl√§ttchen.getY();
 			int xFeld = (x -container.getWidth()/2 + container.getWidth()/22*11/2+10)/(container.getWidth()/22)+1;
 			int yFeld = (y -container.getHeight()/2 + container.getWidth()/22*9/2+10)/(container.getWidth()/22)+1;
 			Feld[i][0] = Integer.toString(xFeld);
 			Feld[i][1] = Integer.toString(yFeld);
-			Feld[i][2] = Integer.toString(pl‰ttchen.getTier());
+			Feld[i][2] = Integer.toString(pl√§ttchen.getTier());
 			i++;
 		}
 		return Feld;
@@ -164,7 +164,7 @@ public class Instanzen {
 				spielerpunkte[i] = 0;
 			}
 			speicherString[0][i] = Integer.toString(charakter[i]);
-			speicherString[1][i] = Integer.toString(pl‰ttchen‹brig[i]);
+			speicherString[1][i] = Integer.toString(pl√§ttchen√úbrig[i]);
 			speicherString[2][i] = Integer.toString(skill[charakter[i]][0]);
 			speicherString[3][i] = Integer.toString(skill[charakter[i]][1]);
 			speicherString[4][i] = Integer.toString(skill[charakter[i]][2]);

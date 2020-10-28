@@ -49,7 +49,7 @@ public class Spielplan {
 		felder[8] = new Felder(x,y+cont.getWidth()/22*8,7,7,5,5,5,7,7,4,4,7,7,cont);
 	}
 
-	public int Pl‰ttchenAusgew‰hlt(int mouseX, int mouseY){
+	public int Pl√§ttchenAusgew√§hlt(int mouseX, int mouseY){
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 11; j++) {
 				if(mouseX >= xpos[j] && mouseX <= xpos[j]+ cont.getWidth()/39 && mouseY >= ypos[i] && mouseY <= ypos[i] + cont.getWidth()/39){

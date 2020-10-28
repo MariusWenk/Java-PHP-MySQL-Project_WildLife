@@ -15,7 +15,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 
-import game.gameobjects.Tierpl‰ttchen;
+import game.gameobjects.Tierpl√§ttchen;
 import game.objects.Button;
 
 public class SpielLaden extends BasicGameState{
@@ -33,7 +33,7 @@ public class SpielLaden extends BasicGameState{
 
 	@Override
 	public void init(GameContainer container, StateBasedGame sbg) throws SlickException {
-		button1 = new Button(container.getWidth()/2-50,370,100,60,"Spielst‰nde",49);
+		button1 = new Button(container.getWidth()/2-50,370,100,60,"SpielstÔøΩnde",49);
 		button2 = new Button(container.getWidth()/2-50,450,100,60,"Start",23);
 		textfield = new TextField(container,container.getDefaultFont(),100,100,300,20);
 		textfield.setText("hi");
@@ -66,36 +66,36 @@ public class SpielLaden extends BasicGameState{
 			 BufferedReader bufferedr = null;
 		        try {
 		        	BufferedReader bufferedr1 = new BufferedReader(new InputStreamReader(new URL("http://localhost/web/SQLJavaConnect.php?spielID="+spielID).openStream()));
-//		            bufferedr = new BufferedReader(new FileReader("G:\\Wechseldatentr‰ger\\Informatik\\Aktuell\\Java Eclipse\\Infoprojekt\\speichern.txt"));
+//		            bufferedr = new BufferedReader(new FileReader("G:\\WechseldatentrÔøΩger\\Informatik\\Aktuell\\Java Eclipse\\Infoprojekt\\speichern.txt"));
 		            String line = null;
 		            while((line = bufferedr1.readLine()) != null) { 
 		            	String[] teile = line.split("/");
 		            	Instanzen.setSpieler(Integer.parseInt(teile[0]));
 		            	Instanzen.setSpAZ(Integer.parseInt(teile[1]));
 		            	Instanzen.setWertungen(Integer.parseInt(teile[2]));
-		                String[] spielst‰nde = teile[3].split("-");
-		                String[] charakter = spielst‰nde[0].split(";");
-		                String[] pl‰ttchen‹brig = spielst‰nde[1].split(";");
-		                String[] punkte = spielst‰nde[18].split(";");
+		                String[] spielst√§nde = teile[3].split("-");
+		                String[] charakter = spielst√§nde[0].split(";");
+		                String[] pl√§ttchen√úbrig = spielst√§nde[1].split(";");
+		                String[] punkte = spielst√§nde[18].split(";");
 		                int[][] skill = new int[Instanzen.getSpieler()][6];
 		                int[][] handkarte = new int[Instanzen.getSpieler()][10];
 		                String[][] strSkill = new String[Instanzen.getSpieler()][6];
 		            	String[][] handkarteStr = new String[Instanzen.getSpieler()][10];
-		            	String[][] spielst‰ndeSkill‹bergang = new String[6][Instanzen.getSpieler()];
-		            	String[][] spielst‰ndeHandkarten‹bergang = new String[10][Instanzen.getSpieler()];
+		            	String[][] spielst√§ndeSkill√úbergang = new String[6][Instanzen.getSpieler()];
+		            	String[][] spielst√§ndeHandkarten√úbergang = new String[10][Instanzen.getSpieler()];
 		            	Integer[] intPunkte = new Integer[Instanzen.getSpieler()];
 		                for(int j = 0; j < 6; j++){
-		                	spielst‰ndeSkill‹bergang[j] = spielst‰nde[j+2].split(";");
+		                	spielst√§ndeSkill√úbergang[j] = spielst√§nde[j+2].split(";");
 		                }
 		                for(int j = 0; j < 10; j++){
-		                	spielst‰ndeHandkarten‹bergang[j] = spielst‰nde[j+8].split(";");
+		                	spielst√§ndeHandkarten√úbergang[j] = spielst√§nde[j+8].split(";");
 		                }
 		                for(int i = 0; i < Instanzen.getSpieler(); i++){
 			                for(int j = 0; j < 6; j++){
-			                	strSkill[i][j] = spielst‰ndeSkill‹bergang[j][i];
+			                	strSkill[i][j] = spielst√§ndeSkill√úbergang[j][i];
 			                }
 			                for(int j = 0; j < 10; j++){
-			                	handkarteStr[i][j] = spielst‰ndeHandkarten‹bergang[j][i];
+			                	handkarteStr[i][j] = spielst√§ndeHandkarten√úbergang[j][i];
 			                }
 		                }
 		                for(int i = 0; i < Instanzen.getSpieler(); i++){
@@ -112,7 +112,7 @@ public class SpielLaden extends BasicGameState{
 			                	Instanzen.setHandkarten(handkarte[i][j], j, i);
 				            }
 		                	Instanzen.setCharacter(Integer.parseInt(charakter[i]),i);
-		                	Instanzen.setPl‰ttchen‹brig(Integer.parseInt(pl‰ttchen‹brig[i]),i);
+		                	Instanzen.setPl√§ttchen√úbrig(Integer.parseInt(pl√§ttchen√úbrig[i]),i);
 		                	intPunkte[i] = Integer.parseInt(punkte[i]);
 		                }
 		                Instanzen.setPunkte(intPunkte);
@@ -138,17 +138,17 @@ public class SpielLaden extends BasicGameState{
 		            while((line2 = bufferedr3.readLine()) != null) { 
 		            	String[] teile2 = line2.split("-");
 		            	String[][] splittedTeile2 = new String[teile2.length][4];
-		            	ArrayList<Tierpl‰ttchen> tierpl‰ttchen = new ArrayList<Tierpl‰ttchen>();
+		            	ArrayList<Tierpl√§ttchen> tierpl√§ttchen = new ArrayList<Tierpl√§ttchen>();
 		            	for (int i = 0; i < teile2.length; i++) {
 		            		splittedTeile2[i] = teile2[i].split(";");
 		        			ypos = ((container.getHeight()/2 - container.getWidth()/22*9/2)+container.getWidth()/22*(Integer.parseInt(splittedTeile2[i][1])-1))-5;
 		        			xpos = ((container.getWidth()/2 - container.getWidth()/22*11/2+10)+container.getWidth()/22*(Integer.parseInt(splittedTeile2[i][0])-1))-5;
 		        			tierart = Integer.parseInt(splittedTeile2[i][2]);
 		        			spieler = Integer.parseInt(splittedTeile2[i][3]);
-		        			Tierpl‰ttchen pl‰ttchen = new Tierpl‰ttchen(xpos,ypos,tierart,container,spieler);
-							tierpl‰ttchen.add(pl‰ttchen);
+		        			Tierpl√§ttchen pl√§ttchen = new Tierpl√§ttchen(xpos,ypos,tierart,container,spieler);
+							tierpl√§ttchen.add(pl√§ttchen);
 		        		}
-		            	Instanzen.setTierpl‰ttchen(tierpl‰ttchen, container);
+		            	Instanzen.setTierpl√§ttchen(tierpl√§ttchen, container);
 		            }
 		        } catch(FileNotFoundException e) {
 		            e.printStackTrace();

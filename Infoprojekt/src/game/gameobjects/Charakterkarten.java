@@ -20,7 +20,7 @@ public class Charakterkarten {
 	int height;
 	Image image;
 	Charakter[] character = new Charakter[4];
-	Tierpl‰ttchen[] tpstapel = new Tierpl‰ttchen[4];
+	Tierpl√§ttchen[] tpstapel = new Tierpl√§ttchen[4];
 	private int[] xPosTpStapel = new int[4];
 	private int[] yPosTpStapel = new int[4];
 	int[] ints;
@@ -57,7 +57,7 @@ public class Charakterkarten {
 				character[3] = new Charakter(0,0,container.getWidth()/4,container.getHeight()/5,ints[3]);
 			}
 			for(int i = 0; i < Instanzen.getSpieler(); i++){
-				tpstapel[i] = new Tierpl‰ttchen(xPosTpStapel [i],yPosTpStapel [i],ints[i],container,i);
+				tpstapel[i] = new Tierpl√§ttchen(xPosTpStapel [i],yPosTpStapel [i],ints[i],container,i);
 				Instanzen.setCharacter(ints[i],i);
 				Instanzen.setSkillCharacter(character[i].getGebietsWerte(),ints[i]);
 			}
@@ -72,9 +72,9 @@ public class Charakterkarten {
 		for (int i = 0; i < spieler; i++) {
 			character[i].draw(g);
 			tpstapel[i].draw(g);
-			String pl‰ttchen = Integer.toString(Instanzen.getPl‰ttchen‹brig(i+1));
+			String pl√§ttchen = Integer.toString(Instanzen.getPl√§ttchen√úbrig(i+1));
 			g.setColor(Color.black);
-			g.drawString(pl‰ttchen, xPosTpStapel [i]+15, yPosTpStapel [i]+15);
+			g.drawString(pl√§ttchen, xPosTpStapel [i]+15, yPosTpStapel [i]+15);
 		}
 	}
 

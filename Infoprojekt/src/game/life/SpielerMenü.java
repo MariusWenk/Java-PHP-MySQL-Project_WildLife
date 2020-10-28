@@ -10,7 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import game.objects.Button;
 
-public class SpielerMenü extends BasicGameState{
+public class SpielerMenÃ¼ extends BasicGameState{
 
 	Button button1;
 	Button button2;

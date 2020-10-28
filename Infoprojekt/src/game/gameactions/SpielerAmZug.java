@@ -5,7 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
-import game.gameobjects.Handkartenmenü;
+import game.gameobjects.HandkartenmenÃ¼;
 import game.life.Instanzen;
 
 public class SpielerAmZug {
@@ -13,13 +13,13 @@ public class SpielerAmZug {
 	int spieler;
 	int x;
 	int y;
-	Handkartenmenü[] handkarten = new Handkartenmenü[4];
+	HandkartenmenÃ¼[] handkarten = new HandkartenmenÃ¼[4];
 	GameContainer container;
 	
 	public SpielerAmZug(GameContainer container) throws SlickException {
 		this.container = container;
 		for (int i = 0; i < 4; i++) {
-			handkarten[i] = new Handkartenmenü(i,container);
+			handkarten[i] = new HandkartenmenÃ¼(i,container);
 		}
 		this.spieler = Instanzen.getSpAZ();
 		init();
@@ -74,8 +74,8 @@ public class SpielerAmZug {
 		handkarten[spieler-1].open();
 	}
 
-	public int KarteAusgewählt(int mouseX, int mouseY) {
-		return handkarten[spieler-1].KarteAusgewählt(mouseX,mouseY);
+	public int KarteAusgewÃ¤hlt(int mouseX, int mouseY) {
+		return handkarten[spieler-1].KarteAusgewÃ¤hlt(mouseX,mouseY);
 	}
 	
 	public int getKartenart(int karte){

@@ -4,10 +4,10 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 
 import game.fields.Spielplan;
-import game.gameobjects.Tierpl‰ttchen;
+import game.gameobjects.Tierpl√§ttchen;
 import game.life.Instanzen;
 
-public class Pl‰ttchenSpielen {
+public class Pl√§ttchenSpielen {
 
 	int spieler;
 	int landschaft;
@@ -18,16 +18,16 @@ public class Pl‰ttchenSpielen {
 	int xpos;
 	int ypos;
 	GameContainer container;
-	Tierpl‰ttchen tierpl‰ttchen;
+	Tierpl√§ttchen tierpl√§ttchen;
 	Spielplan plan;
 	int mouseX;
 	int mouseY;
-	int pl‰ttchenAusgew‰hlt;
+	int pl√§ttchenAusgew√§hlt;
 	boolean gespielt = false;
-	boolean gew‰hlt = false;
+	boolean gew√§hlt = false;
 	boolean bereitsGespielt;
 	
-	public Pl‰ttchenSpielen(int spieler, int karte, Spielplan plan, GameContainer container,int mouseX,int mouseY,boolean bereitsGespielt) throws SlickException {
+	public Pl√§ttchenSpielen(int spieler, int karte, Spielplan plan, GameContainer container,int mouseX,int mouseY,boolean bereitsGespielt) throws SlickException {
 		this.spieler = spieler;
 		this.karte = karte;
 		this.container = container;
@@ -43,13 +43,13 @@ public class Pl‰ttchenSpielen {
 	}
 	
 	public void update() throws SlickException{
-		this.pl‰ttchenAusgew‰hlt = plan.Pl‰ttchenAusgew‰hlt(mouseX, mouseY);
-		this.xpos = pl‰ttchenAusgew‰hlt%100;
-		this.ypos = (pl‰ttchenAusgew‰hlt-x)/100;
+		this.pl√§ttchenAusgew√§hlt = plan.Pl√§ttchenAusgew√§hlt(mouseX, mouseY);
+		this.xpos = pl√§ttchenAusgew√§hlt%100;
+		this.ypos = (pl√§ttchenAusgew√§hlt-x)/100;
 		this.x = container.getWidth()/2 - container.getWidth()/22*11/2+10 + container.getWidth()/22*xpos;
 		this.y = container.getHeight()/2 - container.getWidth()/22*9/2+container.getWidth()/22*ypos;	
-		if(pl‰ttchenAusgew‰hlt < 5000) {
-			gew‰hlt = true;
+		if(pl√§ttchenAusgew√§hlt < 5000) {
+			gew√§hlt = true;
 			this.landschaft = plan.getLandschaft(xpos,ypos);
 			if(landschaft == karte) {
 				gespielt = true;
@@ -57,19 +57,19 @@ public class Pl‰ttchenSpielen {
 		}
 	}
 	
-	public int getXPl‰ttchen(){
+	public int getXPl√§ttchen(){
 		return x-5;
 	}
 	
-	public int getYPl‰ttchen(){
+	public int getYPl√§ttchen(){
 		return y-5;
 	}
 
-	public boolean FeldWandernAusgew‰hlt() {
-		return !bereitsGespielt && gew‰hlt;
+	public boolean FeldWandernAusgew√§hlt() {
+		return !bereitsGespielt && gew√§hlt;
 	}
 	
-	public boolean FeldAusgew‰hlt() {
+	public boolean FeldAusgew√§hlt() {
 		return !bereitsGespielt && gespielt;
 	}
 

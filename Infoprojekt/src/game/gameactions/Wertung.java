@@ -9,19 +9,19 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 
 import game.fields.Spielplan;
-import game.gameobjects.Tierplättchen;
+import game.gameobjects.TierplÃ¤ttchen;
 import game.life.Instanzen;
 
 public class Wertung {
 	
 	Spielplan plan;
 	ArrayList<List<Integer>> wertungsbereiche = new ArrayList<List<Integer>>(12);
-	private int xPrüfen;
-	private int yPrüfen;
+	private int xPrÃ¼fen;
+	private int yPrÃ¼fen;
 	GameContainer container;
 	int xFeld;
 	int yFeld;
-	int posPrüfen;
+	int posPrÃ¼fen;
 	private List<Integer> bereich;
 	private boolean openclose = false;
 	private Integer[] spielerPunkte = new Integer[4];
@@ -74,30 +74,30 @@ public class Wertung {
 		wertungsbereiche.add(bereich12);
 	}
 
-	public boolean wertungPrüfen(Spielplan plan, Tierplättchen plättchen, ArrayList<Tierplättchen> tierplättchen,GameContainer container) {
+	public boolean wertungPrÃ¼fen(Spielplan plan, TierplÃ¤ttchen plÃ¤ttchen, ArrayList<TierplÃ¤ttchen> tierplÃ¤ttchen,GameContainer container) {
 		this.plan = plan;
 		this.container = container;
-		xPrüfen = plättchen.getX();
-		yPrüfen = plättchen.getY();
-		this.xFeld = (xPrüfen -container.getWidth()/2 + container.getWidth()/22*11/2+10)/(container.getWidth()/22)+1;
-		this.yFeld = (yPrüfen -container.getHeight()/2 + container.getWidth()/22*9/2+10)/(container.getWidth()/22)+1;
-		this.posPrüfen = xFeld * 10 + yFeld;
+		xPrÃ¼fen = plÃ¤ttchen.getX();
+		yPrÃ¼fen = plÃ¤ttchen.getY();
+		this.xFeld = (xPrÃ¼fen -container.getWidth()/2 + container.getWidth()/22*11/2+10)/(container.getWidth()/22)+1;
+		this.yFeld = (yPrÃ¼fen -container.getHeight()/2 + container.getWidth()/22*9/2+10)/(container.getWidth()/22)+1;
+		this.posPrÃ¼fen = xFeld * 10 + yFeld;
 			for(List<Integer> wertung : wertungsbereiche){
 				for(int wert : wertung){
-					if(wert == posPrüfen){
+					if(wert == posPrÃ¼fen){
 						bereich = wertung;
 					}
 				}
 			}
-			int übereinstimmung = 0;
-			for (Tierplättchen plättch : tierplättchen) {
+			int Ãœbereinstimmung = 0;
+			for (TierplÃ¤ttchen plÃ¤ttch : tierplÃ¤ttchen) {
 				for(int be : bereich){
 					int xBe = (be-(be%10))/10;
 					int yBe = be%10;
-					int plättchX = (plättch.getX() -container.getWidth()/2 + container.getWidth()/22*11/2+10)/(container.getWidth()/22)+1;
-					int plättchY = (plättch.getY() -container.getHeight()/2 + container.getWidth()/22*9/2+10)/(container.getWidth()/22)+1;
-					if(plättchX==xBe && plättchY==yBe){
-						übereinstimmung++;
+					int plÃ¤ttchX = (plÃ¤ttch.getX() -container.getWidth()/2 + container.getWidth()/22*11/2+10)/(container.getWidth()/22)+1;
+					int plÃ¤ttchY = (plÃ¤ttch.getY() -container.getHeight()/2 + container.getWidth()/22*9/2+10)/(container.getWidth()/22)+1;
+					if(plÃ¤ttchX==xBe && plÃ¤ttchY==yBe){
+						Ãœbereinstimmung++;
 					}
 				}
 			}
@@ -106,7 +106,7 @@ public class Wertung {
 					bereitsGewertet  = true;
 				}
 			}
-			if (übereinstimmung == bereich.size() && !bereitsGewertet){
+			if (Ãœbereinstimmung == bereich.size() && !bereitsGewertet){
 				gewertet.add(bereich);
 				return true;
 			}
@@ -125,58 +125,58 @@ public class Wertung {
 		openclose = false;
 	}
 
-	public Integer[] werten(ArrayList<Tierplättchen> tierplättchen) {
+	public Integer[] werten(ArrayList<TierplÃ¤ttchen> tierplÃ¤ttchen) {
 			openclose = true;
 			Instanzen.setWertungenGemacht();
 			for(List<Integer> wertung : wertungsbereiche){
-				Integer[] plättchenImGebiet = new Integer[4];
+				Integer[] plÃ¤ttchenImGebiet = new Integer[4];
 				for(int i = 0; i<4;i++){
-					plättchenImGebiet[i] = 0;
+					plÃ¤ttchenImGebiet[i] = 0;
 				}
 				for(int ber: wertung){
 					int xBe = (ber-(ber%10))/10;
 					int yBe = ber%10;
-					for (Tierplättchen plättch : tierplättchen) {
-						int plättchX = (plättch.getX() -container.getWidth()/2 + container.getWidth()/22*11/2+10)/(container.getWidth()/22)+1;
-						int plättchY = (plättch.getY() -container.getHeight()/2 + container.getWidth()/22*9/2+10)/(container.getWidth()/22)+1;
-						if(plättchX==xBe && plättchY==yBe){
-							plättchenImGebiet [plättch.getSpieler()-1]++;
+					for (TierplÃ¤ttchen plÃ¤ttch : tierplÃ¤ttchen) {
+						int plÃ¤ttchX = (plÃ¤ttch.getX() -container.getWidth()/2 + container.getWidth()/22*11/2+10)/(container.getWidth()/22)+1;
+						int plÃ¤ttchY = (plÃ¤ttch.getY() -container.getHeight()/2 + container.getWidth()/22*9/2+10)/(container.getWidth()/22)+1;
+						if(plÃ¤ttchX==xBe && plÃ¤ttchY==yBe){
+							plÃ¤ttchenImGebiet [plÃ¤ttch.getSpieler()-1]++;
 						}
 					}
 				}
-				List<Integer> liste = Arrays.asList(plättchenImGebiet);
+				List<Integer> liste = Arrays.asList(plÃ¤ttchenImGebiet);
 				List<Integer> sortierteListe = new ArrayList<Integer>();
 		        sortierteListe.addAll(liste);
 		        sortierteListe.sort((a,b) -> a-b);
-		        Integer größtes = sortierteListe.get(sortierteListe.size()-1);
-		        Integer zweitGrößtes = sortierteListe.get(sortierteListe.size()-2);
-		        Integer drittGrößtes = sortierteListe.get(sortierteListe.size()-3);
-		        Integer viertGrößtes = sortierteListe.get(sortierteListe.size()-4);
-		        if(größtes != 0 && größtes != zweitGrößtes && größtes != drittGrößtes){
-		        	spielerPunkte[liste.indexOf(größtes)] += 3;
+		        Integer grÃ¶ÃŸtes = sortierteListe.get(sortierteListe.size()-1);
+		        Integer zweitGrÃ¶ÃŸtes = sortierteListe.get(sortierteListe.size()-2);
+		        Integer drittGrÃ¶ÃŸtes = sortierteListe.get(sortierteListe.size()-3);
+		        Integer viertGrÃ¶ÃŸtes = sortierteListe.get(sortierteListe.size()-4);
+		        if(grÃ¶ÃŸtes != 0 && grÃ¶ÃŸtes != zweitGrÃ¶ÃŸtes && grÃ¶ÃŸtes != drittGrÃ¶ÃŸtes){
+		        	spielerPunkte[liste.indexOf(grÃ¶ÃŸtes)] += 3;
 		        }
-		        if(zweitGrößtes != 0 && zweitGrößtes != größtes && zweitGrößtes != drittGrößtes){
-		        	spielerPunkte[liste.indexOf(zweitGrößtes)] += 2;
+		        if(zweitGrÃ¶ÃŸtes != 0 && zweitGrÃ¶ÃŸtes != grÃ¶ÃŸtes && zweitGrÃ¶ÃŸtes != drittGrÃ¶ÃŸtes){
+		        	spielerPunkte[liste.indexOf(zweitGrÃ¶ÃŸtes)] += 2;
 		        }
-		        if(drittGrößtes != 0 && drittGrößtes != größtes && drittGrößtes != zweitGrößtes && drittGrößtes != viertGrößtes){
-		        	spielerPunkte[liste.indexOf(drittGrößtes)] += 1;
+		        if(drittGrÃ¶ÃŸtes != 0 && drittGrÃ¶ÃŸtes != grÃ¶ÃŸtes && drittGrÃ¶ÃŸtes != zweitGrÃ¶ÃŸtes && drittGrÃ¶ÃŸtes != viertGrÃ¶ÃŸtes){
+		        	spielerPunkte[liste.indexOf(drittGrÃ¶ÃŸtes)] += 1;
 		        }
-		        if(größtes != 0 && größtes == zweitGrößtes && größtes != drittGrößtes){
-		        	spielerPunkte[liste.indexOf(größtes)] += 2;
-		        	liste.set(liste.indexOf(größtes), 0);
-		        	spielerPunkte[liste.indexOf(zweitGrößtes)] += 2;
+		        if(grÃ¶ÃŸtes != 0 && grÃ¶ÃŸtes == zweitGrÃ¶ÃŸtes && grÃ¶ÃŸtes != drittGrÃ¶ÃŸtes){
+		        	spielerPunkte[liste.indexOf(grÃ¶ÃŸtes)] += 2;
+		        	liste.set(liste.indexOf(grÃ¶ÃŸtes), 0);
+		        	spielerPunkte[liste.indexOf(zweitGrÃ¶ÃŸtes)] += 2;
 		        }
-		        if(zweitGrößtes != 0 && drittGrößtes == zweitGrößtes && größtes != drittGrößtes && drittGrößtes != viertGrößtes){
-		        	spielerPunkte[liste.indexOf(drittGrößtes)] += 1;
-		        	liste.set(liste.indexOf(drittGrößtes), 0);
-		        	spielerPunkte[liste.indexOf(zweitGrößtes)] += 1;
+		        if(zweitGrÃ¶ÃŸtes != 0 && drittGrÃ¶ÃŸtes == zweitGrÃ¶ÃŸtes && grÃ¶ÃŸtes != drittGrÃ¶ÃŸtes && drittGrÃ¶ÃŸtes != viertGrÃ¶ÃŸtes){
+		        	spielerPunkte[liste.indexOf(drittGrÃ¶ÃŸtes)] += 1;
+		        	liste.set(liste.indexOf(drittGrÃ¶ÃŸtes), 0);
+		        	spielerPunkte[liste.indexOf(zweitGrÃ¶ÃŸtes)] += 1;
 		        }
-		        if(größtes != 0 && größtes == zweitGrößtes && größtes == drittGrößtes && größtes != viertGrößtes){
-		        	spielerPunkte[liste.indexOf(größtes)] += 1;
-		        	liste.set(liste.indexOf(größtes), 0);
-		        	spielerPunkte[liste.indexOf(zweitGrößtes)] += 1;
-		        	liste.set(liste.indexOf(größtes), 0);
-		        	spielerPunkte[liste.indexOf(drittGrößtes)] += 1;
+		        if(grÃ¶ÃŸtes != 0 && grÃ¶ÃŸtes == zweitGrÃ¶ÃŸtes && grÃ¶ÃŸtes == drittGrÃ¶ÃŸtes && grÃ¶ÃŸtes != viertGrÃ¶ÃŸtes){
+		        	spielerPunkte[liste.indexOf(grÃ¶ÃŸtes)] += 1;
+		        	liste.set(liste.indexOf(grÃ¶ÃŸtes), 0);
+		        	spielerPunkte[liste.indexOf(zweitGrÃ¶ÃŸtes)] += 1;
+		        	liste.set(liste.indexOf(grÃ¶ÃŸtes), 0);
+		        	spielerPunkte[liste.indexOf(drittGrÃ¶ÃŸtes)] += 1;
 		        }
 			}
 			Instanzen.setPunkte(spielerPunkte);

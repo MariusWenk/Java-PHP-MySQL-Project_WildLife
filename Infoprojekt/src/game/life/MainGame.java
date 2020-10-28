@@ -15,7 +15,7 @@ import game.gameactions.Wertung;
 import game.gameobjects.Charakterkarten;
 import game.gameobjects.Handkarte;
 import game.gameobjects.Spielregel;
-import game.gameobjects.Tierplättchen;
+import game.gameobjects.TierplÃ¤ttchen;
 import game.fields.Spielplan;
 import game.life.Instanzen;
 import game.objects.Label;
@@ -39,12 +39,12 @@ public class MainGame extends BasicGameState{
 	boolean keineAktion = true;
 	boolean aktionopen;
 	Kartenaktion aktion;
-	int karteAusgewählt;
-	private ArrayList<Tierplättchen> tierplättchen;
-	private ArrayList<Tierplättchen> tierplättchenLöschen = new ArrayList<Tierplättchen>();
+	int karteAusgewÃ¤hlt;
+	private ArrayList<TierplÃ¤ttchen> tierplÃ¤ttchen;
+	private ArrayList<TierplÃ¤ttchen> tierplÃ¤ttchenLÃ¶schen = new ArrayList<TierplÃ¤ttchen>();
 	int skill;
-	boolean plättchenHinweise = false;
-	boolean plättchenAusgewählt = false;
+	boolean plÃ¤ttchenHinweise = false;
+	boolean plÃ¤ttchenAusgewÃ¤hlt = false;
 	private boolean gespielt = false;
 	private boolean firstInitialized = true;
 	private int yWandern;
@@ -77,13 +77,13 @@ public class MainGame extends BasicGameState{
 		player = new SpielerAmZug(container);
 		if(Instanzen.getSpielLaden() == false){
 			player.setSpAZ(1);
-			tierplättchen = new ArrayList<Tierplättchen>();
+			tierplÃ¤ttchen = new ArrayList<TierplÃ¤ttchen>();
 			for(int i = 0; i <spieler;i++){
 				spielerPunkte[i] = 0;
 			}
 		}
 		else{
-			tierplättchen = Instanzen.getTierplättchen();
+			tierplÃ¤ttchen = Instanzen.getTierplÃ¤ttchen();
 			wertungen = Instanzen.getWertungen();
 			player.setSpAZ(Instanzen.getSpAZ());
 			tutorialText = false;
@@ -101,49 +101,49 @@ public class MainGame extends BasicGameState{
 		g.setAntiAlias(true);
 		Charaktere.draw(g);
 		plan.draw(g);
-		for (Tierplättchen plättchen : tierplättchen) {
-			plättchen.draw(g);
+		for (TierplÃ¤ttchen plÃ¤ttchen : tierplÃ¤ttchen) {
+			plÃ¤ttchen.draw(g);
 		}
 		spielregel.draw(g);
 		tutorial2.draw(g);
 		if(tutorial2Text ){
 			g.setColor(Color.black);
 			g.drawString("Wertungen:", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5);
-			g.drawString("Immer wenn ein zusammenhängendes Gebiet vollständig mit Plättchen besetzt ist,", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5+15);
-			g.drawString("kommt es zu einer Wertung. Dann bekommt jeder pro zusammenhängendes Gebiet, ", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5+30);
-			g.drawString("indem er die meisten Plättchen hat 3 Punkte. Außerdem gibt es für die zweitmesten", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5+45);
-			g.drawString("2 und für die drittmeisten 1 Punkt.", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5+60);
+			g.drawString("Immer wenn ein zusammenhï¿½ngendes Gebiet vollstï¿½ndig mit Plï¿½ttchen besetzt ist,", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5+15);
+			g.drawString("kommt es zu einer Wertung. Dann bekommt jeder pro zusammenhï¿½ngendes Gebiet, ", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5+30);
+			g.drawString("indem er die meisten Plï¿½ttchen hat 3 Punkte. Auï¿½erdem gibt es fï¿½r die zweitmesten", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5+45);
+			g.drawString("2 und fï¿½r die drittmeisten 1 Punkt.", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5+60);
 			g.drawString("Spielende:", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5+75);
-			g.drawString("Nach 5 Wertungen oder wen ein Spieler keine Plättchen mehr hat endet das Spiel", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5+90);
+			g.drawString("Nach 5 Wertungen oder wen ein Spieler keine Plï¿½ttchen mehr hat endet das Spiel", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5+90);
 			g.drawString("und der Spieler mit den meisten Punkten gewinnt.", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5+105);
-			g.drawString("Das Spiel kann außerdem zwischendurch abgespeichert werden.", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5+120);
+			g.drawString("Das Spiel kann auï¿½erdem zwischendurch abgespeichert werden.", container.getWidth()/2-container.getWidth()/4+30,container.getHeight()/2-container.getHeight()/5+120);
 		}
 		tutorial.draw(g);
 		if(tutorialText){
 			g.setColor(Color.black);
-			g.drawString("Wilkommen in WildLife, hier ist das Spiel kurz erklärt, für weitere Informationen", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+10);
-			g.drawString("kannst du a drücken (dieses Tutorial kannst du mit t erneut ansehen):", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+25);
-			g.drawString("Der Spieler an der Reihe (rot markiert) kann mit i sein Handkartenmenü öffnen und", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+40);
-			g.drawString("die Karte, die er spielen möchte auswählen. Diese wird dann links grün markiert", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+55);
+			g.drawString("Wilkommen in WildLife, hier ist das Spiel kurz erklï¿½rt, fï¿½r weitere Informationen", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+10);
+			g.drawString("kannst du a drï¿½cken (dieses Tutorial kannst du mit t erneut ansehen):", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+25);
+			g.drawString("Der Spieler an der Reihe (rot markiert) kann mit i sein Handkartenmenï¿½ ï¿½ffnen und", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+40);
+			g.drawString("die Karte, die er spielen mï¿½chte auswï¿½hlen. Diese wird dann links grï¿½n markiert", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+55);
 			g.drawString("ausgegeben. Um sie zu benutzen muss sie erneut angeclickt werden. Mit o beendest du", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+70);
-			g.drawString("deinen Zug und der nächste ist an der Reihe. Außerdem wird die benutzte Karte getauscht", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+85);
-			g.drawString("für den nächsten Zug. Mit Esc kannst du ins Hauptmenü zurückkehren.(Um Fenster zu", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+100);
-			g.drawString("schließen drücke auf das schwarze Kreuz oben rechts)", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+115);
-			g.drawString("Die Karten (Teilweise sind diese nach dem auswählen oben in blau noch einmal erklärt):", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+130);
+			g.drawString("deinen Zug und der nï¿½chste ist an der Reihe. Auï¿½erdem wird die benutzte Karte getauscht", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+85);
+			g.drawString("fï¿½r den nï¿½chsten Zug. Mit Esc kannst du ins Hauptmenï¿½ zurï¿½ckkehren.(Um Fenster zu", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+100);
+			g.drawString("schlieï¿½en drï¿½cke auf das schwarze Kreuz oben rechts)", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+115);
+			g.drawString("Die Karten (Teilweise sind diese nach dem auswï¿½hlen oben in blau noch einmal erklï¿½rt):", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+130);
 			g.drawString("Blitz(/Baum) = Joker, du kannst dir eine beliebige andere Karte aussuchen.", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+145);
-			g.drawString("Rad = Weiterentwickeln, eine Fähigkeit in einem Gebiet deiner Wahl um eins verbessern ", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+160);
-			g.drawString("-> Auf deinem Charakterfeld kannst du deine Fähigkeiten für jedes Gebiet sehen,", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+175);
+			g.drawString("Rad = Weiterentwickeln, eine Fï¿½higkeit in einem Gebiet deiner Wahl um eins verbessern ", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+160);
+			g.drawString("-> Auf deinem Charakterfeld kannst du deine Fï¿½higkeiten fï¿½r jedes Gebiet sehen,", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+175);
 			g.drawString("dabei ist keine Aktion (keAk) quasi Level 0, worauf Wandern (Wan) mit Level 1 folgt,", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+190);
 			g.drawString("dann Expandieren (Exp) Level 2 und das Beste (Level 3) ist Attackieren (Att).", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+205);
 			g.drawString("Die anderen 6 Karten sind Gebietskarten, wobei man je nach Art der Karte in dem", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+220);
-			g.drawString("Die Aktionsmöglichkeiten (hierbei handelt es sich um Aktionen, die du mit deinen", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+235);
-			g.drawString("Tierplättchen ausführen kannst):.", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+250);
-			g.drawString("keAk = keine Aktionsmöglichkeiten, also kannst du dieses Gebiet gar nicht betreten", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+265);
-			g.drawString("Wan = Du kannst ein bereits gesetztes Plättchen in ein benachbartes Feld der Kartenart", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+280);
-			g.drawString("verschieben (also betreten). Dazu wählst du zuerst das Plättchen aus und dann das Ziel", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+295);
-			g.drawString("Exp = Du kannst in diesem Gebiet nachdem du die Karte rechts ausgewählt hast durch", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+310);
-			g.drawString("clicken ein neues Plättchen platzieren.", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+325);
-			g.drawString("Att = Wie Exp, allerdings kannst du auch andere Spieler überbauen.", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+340);
+			g.drawString("Die Aktionsmï¿½glichkeiten (hierbei handelt es sich um Aktionen, die du mit deinen", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+235);
+			g.drawString("Tierplï¿½ttchen ausfï¿½hren kannst):.", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+250);
+			g.drawString("keAk = keine Aktionsmï¿½glichkeiten, also kannst du dieses Gebiet gar nicht betreten", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+265);
+			g.drawString("Wan = Du kannst ein bereits gesetztes Plï¿½ttchen in ein benachbartes Feld der Kartenart", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+280);
+			g.drawString("verschieben (also betreten). Dazu wï¿½hlst du zuerst das Plï¿½ttchen aus und dann das Ziel", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+295);
+			g.drawString("Exp = Du kannst in diesem Gebiet nachdem du die Karte rechts ausgewï¿½hlt hast durch", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+310);
+			g.drawString("clicken ein neues Plï¿½ttchen platzieren.", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+325);
+			g.drawString("Att = Wie Exp, allerdings kannst du auch andere Spieler ï¿½berbauen.", container.getWidth()/2-container.getWidth()/4+10,container.getHeight()/2-container.getHeight()/5+340);
 			
 		}
 		g.setColor(Color.white);
@@ -168,20 +168,20 @@ public class MainGame extends BasicGameState{
 		g.drawRect(50,container.getHeight()/2-container.getWidth()/11*3/4,container.getWidth()/11,container.getWidth()/11*3/2);
 		gespielteKarte.draw(g);
 		aktion.draw(g);
-		if(plättchenHinweise){
+		if(plÃ¤ttchenHinweise){
 			g.setColor(Color.blue);
 			if(skill == 0){
-				g.drawString("Du hast leider keine Aktionsmöglichkeiten, wähle eine andere Karte", container.getWidth()/2-300, 70);
+				g.drawString("Du hast leider keine Aktionsmï¿½glichkeiten, wï¿½hle eine andere Karte", container.getWidth()/2-300, 70);
 			}
 			if(skill == 1){
-				g.drawString("Du kannst Wandern, wähle eines deiner Plättchen und bewege es", container.getWidth()/2-300, 70);
+				g.drawString("Du kannst Wandern, wï¿½hle eines deiner Plï¿½ttchen und bewege es", container.getWidth()/2-300, 70);
 				g.drawString("in ein benachbartes Feld der Kartenart", container.getWidth()/2-180, 90);
 			}
 			if(skill == 2){
-				g.drawString("Du kannst Expandieren, setzte ein Plättchen in ein freies Feld der Kartenart", container.getWidth()/2-330, 70);
+				g.drawString("Du kannst Expandieren, setzte ein Plï¿½ttchen in ein freies Feld der Kartenart", container.getWidth()/2-330, 70);
 			}
 			if(skill == 3){
-				g.drawString("Du kannst Attackieren, setzte ein Plättchen in ein freies oder belegtes Feld", container.getWidth()/2-330, 70);
+				g.drawString("Du kannst Attackieren, setzte ein Plï¿½ttchen in ein freies oder belegtes Feld", container.getWidth()/2-330, 70);
 			}
 		}
 		wertung.draw(g);
@@ -193,7 +193,7 @@ public class MainGame extends BasicGameState{
 	@Override
 	public void update(GameContainer container, StateBasedGame sbg, int delta) throws SlickException {
 		if(werten){
-			spielerPunkte  = wertung.werten(tierplättchen);
+			spielerPunkte  = wertung.werten(tierplÃ¤ttchen);
 			werten = false;
 		}
 		if(wertungsBeginn){
@@ -205,14 +205,14 @@ public class MainGame extends BasicGameState{
 			}
 		}
 		for(int i = 1; i<=4;i++){
-			if(wertungen == 5 || Instanzen.getPlättchenÜbrig(i)==0){
+			if(wertungen == 5 || Instanzen.getPlÃ¤ttchenÃœbrig(i)==0){
 				spielBeendet  = true;
 				List<Integer> liste = Arrays.asList(spielerPunkte);
 		        List<Integer> sortierteListe = new ArrayList<Integer>();
 		        sortierteListe.addAll(liste);
 		        sortierteListe.sort((a,b) -> a-b);
-		        Integer größtes = sortierteListe.get(sortierteListe.size()-1);
-				gewinner = liste.indexOf(größtes)+1;
+		        Integer grÃ¶ÃŸtes = sortierteListe.get(sortierteListe.size()-1);
+				gewinner = liste.indexOf(grÃ¶ÃŸtes)+1;
 			}
 		}
 		this.spieler = Instanzen.getSpieler();
@@ -235,9 +235,9 @@ public class MainGame extends BasicGameState{
 			    tutorial2Text = false;
 			}
 			if(player.LabelOpen()){
-				 if(player.KarteAusgewählt(mouseX,mouseY) <= 10){
-					karteAusgewählt = player.KarteAusgewählt(mouseX,mouseY);
-					ausgespielteKarte = player.getKartenart(karteAusgewählt);
+				 if(player.KarteAusgewÃ¤hlt(mouseX,mouseY) <= 10){
+					karteAusgewÃ¤hlt = player.KarteAusgewÃ¤hlt(mouseX,mouseY);
+					ausgespielteKarte = player.getKartenart(karteAusgewÃ¤hlt);
 					karteGespielt = true;
 					player.close();
 					gespielteKarte.setKartenart(ausgespielteKarte);
@@ -245,8 +245,8 @@ public class MainGame extends BasicGameState{
 				}
 			}
 			if(aktion.JokerOpen()){
-				 if(aktion.JokerKarteAusgewählt(mouseX,mouseY) <= 7){
-					ausgespielteKarte = aktion.getJokerKartenart(aktion.JokerKarteAusgewählt(mouseX,mouseY));
+				 if(aktion.JokerKarteAusgewÃ¤hlt(mouseX,mouseY) <= 7){
+					ausgespielteKarte = aktion.getJokerKartenart(aktion.JokerKarteAusgewÃ¤hlt(mouseX,mouseY));
 					aktionopen = false;
 					aktion.close();
 					gespielteKarte.setKartenart(ausgespielteKarte);
@@ -254,8 +254,8 @@ public class MainGame extends BasicGameState{
 				}
 			}
 			if(aktion.UpgradeOpen()){
-				 if(aktion.UpgradeKarteAusgewählt(mouseX,mouseY) <= 6){
-					int upgradeGebiet = aktion.getUpgradeKartenart(aktion.UpgradeKarteAusgewählt(mouseX,mouseY));
+				 if(aktion.UpgradeKarteAusgewÃ¤hlt(mouseX,mouseY) <= 6){
+					int upgradeGebiet = aktion.getUpgradeKartenart(aktion.UpgradeKarteAusgewÃ¤hlt(mouseX,mouseY));
 					if(Instanzen.getSkillCharacter(upgradeGebiet, Instanzen.getCharacter(player.getSpAZ())) < 3){
 						Instanzen.upgradeSkillCharacter(upgradeGebiet,Instanzen.getCharacter(player.getSpAZ()));
 					}
@@ -278,10 +278,10 @@ public class MainGame extends BasicGameState{
 						aktion.open();
 					}
 					if(ausgespielteKarte < 7){
-						this.plättchenHinweise = true;
+						this.plÃ¤ttchenHinweise = true;
 						int gebiet = aktion.getLandschaft();
 						this.skill = Instanzen.getSkillCharacter(gebiet,Instanzen.getCharacter(player.getSpAZ()));
-						boolean interaktion = aktion.PlättchenInteraktion(skill);
+						boolean interaktion = aktion.PlÃ¤ttchenInteraktion(skill);
 						if(skill == 0){
 							karteGespielt = false;
 							aktionopen = false;
@@ -292,41 +292,41 @@ public class MainGame extends BasicGameState{
 						if(skill == 1){
 							if(interaktion){
 								if(firstInitialized){
-									this.xWandern = aktion.getXPlättchen();
-									this.yWandern = aktion.getYPlättchen();
+									this.xWandern = aktion.getXPlÃ¤ttchen();
+									this.yWandern = aktion.getYPlÃ¤ttchen();
 									aktion.initCoords(xWandern, yWandern);
 									firstInitialized = false;
 								}
-								for (Tierplättchen plättchen : tierplättchen) {
-									if(plättchen.getX()==xWandern && plättchen.getY()==yWandern && plättchen.getTier() == Instanzen.getCharacter(player.getSpAZ())){
-										plättchenAusgewählt = true;
+								for (TierplÃ¤ttchen plÃ¤ttchen : tierplÃ¤ttchen) {
+									if(plÃ¤ttchen.getX()==xWandern && plÃ¤ttchen.getY()==yWandern && plÃ¤ttchen.getTier() == Instanzen.getCharacter(player.getSpAZ())){
+										plÃ¤ttchenAusgewÃ¤hlt = true;
 									}
 								}
-								if(plättchenAusgewählt){
+								if(plÃ¤ttchenAusgewÃ¤hlt){
 									if(aktion.FeldBenachbart(xWandern,yWandern)){
 										int xNeu = aktion.getXFeldBenachbart();
 										int yNeu = aktion.getYFeldBenachbart();
 										boolean feldBelegt = false;
-										for (Tierplättchen plättchen : tierplättchen) {
-											if(plättchen.getX()==xNeu && plättchen.getY()==yNeu){
+										for (TierplÃ¤ttchen plÃ¤ttchen : tierplÃ¤ttchen) {
+											if(plÃ¤ttchen.getX()==xNeu && plÃ¤ttchen.getY()==yNeu){
 												feldBelegt = true;
 											}
 										}
 										if(feldBelegt == false){
 											boolean move = false;
-											for (Tierplättchen plättchen : tierplättchen) {
-												if(plättchen.getX()==xWandern && plättchen.getY()==yWandern && plättchen.getTier() == Instanzen.getCharacter(player.getSpAZ())&& aktion.getFeldart(xNeu,yNeu)== ausgespielteKarte){
+											for (TierplÃ¤ttchen plÃ¤ttchen : tierplÃ¤ttchen) {
+												if(plÃ¤ttchen.getX()==xWandern && plÃ¤ttchen.getY()==yWandern && plÃ¤ttchen.getTier() == Instanzen.getCharacter(player.getSpAZ())&& aktion.getFeldart(xNeu,yNeu)== ausgespielteKarte){
 													move = true;
-													tierplättchenLöschen.add(plättchen);
+													tierplÃ¤ttchenLÃ¶schen.add(plÃ¤ttchen);
 												}
 											}
 											if(move){
-												tierplättchen.removeAll(tierplättchenLöschen);
-												Instanzen.setTierplättchen(tierplättchen, container);
-												while(tierplättchenLöschen.size() > 0) {
-													tierplättchenLöschen.remove(0);
+												tierplÃ¤ttchen.removeAll(tierplÃ¤ttchenLÃ¶schen);
+												Instanzen.setTierplÃ¤ttchen(tierplÃ¤ttchen, container);
+												while(tierplÃ¤ttchenLÃ¶schen.size() > 0) {
+													tierplÃ¤ttchenLÃ¶schen.remove(0);
 												}
-												neuesPlättchen(xNeu,yNeu,player.getSpAZ(),container,false);
+												neuesPlÃ¤ttchen(xNeu,yNeu,player.getSpAZ(),container,false);
 												if(gespielt){
 													aktion.setGespielt();
 													keineAktion = false;
@@ -339,9 +339,9 @@ public class MainGame extends BasicGameState{
 						}
 						if(skill == 2 || skill == 3){
 							if(interaktion){ 
-								int x = aktion.getXPlättchen();
-								int y = aktion.getYPlättchen();
-								neuesPlättchen(x,y,player.getSpAZ(),container,true);
+								int x = aktion.getXPlÃ¤ttchen();
+								int y = aktion.getYPlÃ¤ttchen();
+								neuesPlÃ¤ttchen(x,y,player.getSpAZ(),container,true);
 								if(gespielt){
 									aktion.setGespielt();
 									keineAktion = false;
@@ -370,7 +370,7 @@ public class MainGame extends BasicGameState{
 		if (input.isKeyPressed(Input.KEY_I) && keineAktion){
 			player.open();
 			if(skill == 0){
-				plättchenHinweise = false;
+				plÃ¤ttchenHinweise = false;
 			}
 		}
 		if (input.isKeyPressed(Input.KEY_T)){
@@ -386,8 +386,8 @@ public class MainGame extends BasicGameState{
 		
 		if (input.isKeyPressed(Input.KEY_O)) {
 			gespielt = false;
-			plättchenHinweise = false;
-			plättchenAusgewählt = false;
+			plÃ¤ttchenHinweise = false;
+			plÃ¤ttchenAusgewÃ¤hlt = false;
 			firstInitialized = true;
 			aktionopen = false;
 			keineAktion = true;
@@ -395,9 +395,9 @@ public class MainGame extends BasicGameState{
 			aktion.close();
 			karteGespielt = false;
 			drawAction = true;
-			aktion.NächsterSpieler();
+			aktion.NÃ¤chsterSpieler();
 			if(z){
-				player.KarteWechseln(karteAusgewählt);
+				player.KarteWechseln(karteAusgewÃ¤hlt);
 			}
 			z = false;
 			if(spieler == k){
@@ -411,42 +411,42 @@ public class MainGame extends BasicGameState{
 		}
 	}
 	
-	private void neuesPlättchen(int x, int y,int spieler, GameContainer container,boolean neu) throws SlickException {
+	private void neuesPlÃ¤ttchen(int x, int y,int spieler, GameContainer container,boolean neu) throws SlickException {
 		int tier = Instanzen.getCharacter(spieler);
 		boolean nichtBesetzt = true;
 		boolean nichtSelbstBesetzt = true;
-		for (Tierplättchen plättchen : tierplättchen) {
-			if(plättchen.getX()==x && plättchen.getY()==y){
+		for (TierplÃ¤ttchen plÃ¤ttchen : tierplÃ¤ttchen) {
+			if(plÃ¤ttchen.getX()==x && plÃ¤ttchen.getY()==y){
 				nichtBesetzt = false;
 			}
-			if(plättchen.getX()==x && plättchen.getY()==y&&plättchen.getTier() == Instanzen.getCharacter(player.getSpAZ())){
+			if(plÃ¤ttchen.getX()==x && plÃ¤ttchen.getY()==y&&plÃ¤ttchen.getTier() == Instanzen.getCharacter(player.getSpAZ())){
 				nichtSelbstBesetzt = false;
 			}
 		}
 		if(nichtBesetzt || nichtSelbstBesetzt && skill == 3){
 			gespielt = true;
-			Tierplättchen plättchen = new Tierplättchen(x,y,tier,container,spieler);
+			TierplÃ¤ttchen plÃ¤ttchen = new TierplÃ¤ttchen(x,y,tier,container,spieler);
 			if(neu){
-				Instanzen.setPlättchenBenutzt(player.getSpAZ());
+				Instanzen.setPlÃ¤ttchenBenutzt(player.getSpAZ());
 			}
 			if(skill == 3){
-				for (Tierplättchen plättche : tierplättchen) {
-					if(plättche.getX()==x && plättche.getY()==y){
-						tierplättchenLöschen.add(plättche);
+				for (TierplÃ¤ttchen plÃ¤ttche : tierplÃ¤ttchen) {
+					if(plÃ¤ttche.getX()==x && plÃ¤ttche.getY()==y){
+						tierplÃ¤ttchenLÃ¶schen.add(plÃ¤ttche);
 					}
 				}
 			}
-			tierplättchen.removeAll(tierplättchenLöschen);
-			while(tierplättchenLöschen.size() > 0) {
-				tierplättchenLöschen.remove(0);
+			tierplÃ¤ttchen.removeAll(tierplÃ¤ttchenLÃ¶schen);
+			while(tierplÃ¤ttchenLÃ¶schen.size() > 0) {
+				tierplÃ¤ttchenLÃ¶schen.remove(0);
 			}
-			tierplättchen.add(plättchen);
-			if(wertung.wertungPrüfen(plan,plättchen,tierplättchen, container)){
+			tierplÃ¤ttchen.add(plÃ¤ttchen);
+			if(wertung.wertungPrÃ¼fen(plan,plÃ¤ttchen,tierplÃ¤ttchen, container)){
 				werten  = true;
 				wertungsBeginn  = true;
 				wertungen ++;
 			}
-			Instanzen.setTierplättchen(tierplättchen, container);
+			Instanzen.setTierplÃ¤ttchen(tierplÃ¤ttchen, container);
 		}
 	}
 	

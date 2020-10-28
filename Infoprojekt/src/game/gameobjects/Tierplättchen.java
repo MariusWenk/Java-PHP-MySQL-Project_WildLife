@@ -5,7 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-public class Tierpl‰ttchen {
+public class Tierpl√§ttchen {
 	
 	int x;
 	int y;
@@ -14,7 +14,7 @@ public class Tierpl‰ttchen {
 	GameContainer container;
 	Image image;
 	
-	public Tierpl‰ttchen(int x, int y, int tier,GameContainer container,int spieler) throws SlickException {
+	public Tierpl√§ttchen(int x, int y, int tier,GameContainer container,int spieler) throws SlickException {
 		super();
 		this.x = x;
 		this.y = y;
@@ -25,7 +25,7 @@ public class Tierpl‰ttchen {
 	}
 	
 	public void init() throws SlickException{
-		image = new Image("res/Tierpl‰ttchen (" + (tier+1)+ ").PNG").getScaledCopy(container.getWidth()/39+10,container.getWidth()/39+10);
+		image = new Image("res/Tierpl√§ttchen (" + (tier+1)+ ").PNG").getScaledCopy(container.getWidth()/39+10,container.getWidth()/39+10);
 	}	
 	
 	public void draw(Graphics g) {

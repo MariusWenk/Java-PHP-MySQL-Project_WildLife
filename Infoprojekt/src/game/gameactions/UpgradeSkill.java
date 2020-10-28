@@ -52,7 +52,7 @@ public class UpgradeSkill {
 		return label1.but(mouseX,mouseY);
 	}
 	
-	public int KarteAusgew‰hlt(int mouseX, int mouseY){
+	public int KarteAusgew√§hlt(int mouseX, int mouseY){
 		for (int i = 0; i < karten.length; i++) {
 			if(mouseX >= xpos[i] && mouseX <= xpos[i]+ container.getWidth()/11 && mouseY >= ypos[i] && mouseY <= ypos[i] + container.getWidth()/11*3/2){
 				return i;
@@ -67,7 +67,7 @@ public class UpgradeSkill {
 			karten[i].draw(g);
 		}
 		g.setColor(Color.blue);															
-		g.drawString("W‰hle eine Gebietsart, in der du deine F‰higkeiten verbessern willst", container.getWidth()/2-300, 70);
+		g.drawString("WÔøΩhle eine Gebietsart, in der du deine FÔøΩhigkeiten verbessern willst", container.getWidth()/2-300, 70);
 	}
 
 }

@@ -19,10 +19,10 @@ public class WildLife extends StateBasedGame{
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException {
 		this.addState(new MainMenu());
-		this.addState(new SpielerMenü());
+		this.addState(new SpielerMenÃ¼());
 		this.addState(new MainGame());
 		this.addState(new SpielLaden());
-		this.addState(new Spielstände());
+		this.addState(new SpielstÃ¤nde());
 		enterState(0);
 	}
 	
